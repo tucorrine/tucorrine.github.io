@@ -1,38 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for post in posts %}
-  <url>
-    <loc>{{ post.permalink | uriencode }}</loc>
-    {% if post.updated %}
-    <lastmod>{{ post.updated | formatDate }}</lastmod>
-    {% elif post.date %}
-    <lastmod>{{ post.date | formatDate }}</lastmod>
-    {% endif %}
-  </url>
-  {% endfor %}
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-  <url>
-    <loc>{{ config.url | uriencode }}</loc>
-    <lastmod>{{ sNow | formatDate }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
 
-  {% for tag in tags %}
-  <url>
-    <loc>{{ tag.permalink | uriencode }}</loc>
-    <lastmod>{{ sNow | formatDate }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  {% endfor %}
+<url>
+  <loc>https://tucorrine.github.io/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/archives/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/categories/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/tags/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/about/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/2020/12/15/search%20bar/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/2020/12/14/Coursera/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/2020/12/05/speech20201205/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/2020/12/04/Hexo%20Resources/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/2020/11/28/The%20Real%20First%20Post/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/categories/%E8%B3%87%E6%BA%90%E5%88%86%E4%BA%AB/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/categories/%E7%A0%94%E7%A9%B6%E4%B8%AD/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/tags/Coursera/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tucorrine.github.io/tags/Speeches/</loc>
+  <lastmod>2020-12-18T08:13:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 
-  {% for cat in categories %}
-  <url>
-    <loc>{{ cat.permalink | uriencode }}</loc>
-    <lastmod>{{ sNow | formatDate }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  {% endfor %}
+
 </urlset>
