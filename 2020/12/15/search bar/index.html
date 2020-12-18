@@ -306,6 +306,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -335,11 +397,16 @@
         </header>
 
         <div class="post-content">
-            <p>真的是太好笑了我的媽，但至少有 search bar 跑出來，應該要再研究一下<a target="_blank" rel="noopener" href="https://zhou-bill.github.io/2020/07/09/hexo%E8%87%AA%E5%AE%9A%E4%B9%89/">程式碼</a>是怎麼寫的。<br><img src="https://i.imgur.com/aZgnUzG.png" alt="Beta版"></p>
+            <h2 id="failed…"><a href="#failed…" class="headerlink" title="failed…"></a>failed…</h2><p>真的是太好笑了我的媽，但至少有 search bar 跑出來，應該要再研究一下<a target="_blank" rel="noopener" href="https://zhou-bill.github.io/2020/07/09/hexo%E8%87%AA%E5%AE%9A%E4%B9%89/">程式碼</a>是怎麼寫的。<br><img src="https://i.imgur.com/aZgnUzG.png" alt="Beta版"></p>
 <p align="right">2020/12/15</p>
 
 <p>版面上完成，but 無法搜尋，正在與博主聯繫。<br><img src="https://i.imgur.com/29E6DxF.png" alt="Beta版"></p>
 <p align="right">2020/12/18</p>
+
+<hr>
+<h2 id="DONE"><a href="#DONE" class="headerlink" title="DONE!!"></a>DONE!!</h2><p>結果是因為我沒有將 jquery.min.js 文件放入 /themes/Chic/source/js/ 。又完成了一個小目標，讚！</p>
+<p>下次ㄉ目標是: 研究Google Analytics &amp; Google Search Console 。</p>
+
         </div>
 
         
