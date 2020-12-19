@@ -55,10 +55,14 @@
             return;
         }
         const search = $('.search');
-        const searchForm = $('.form-search')
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
 
         if(!search.hasClass("mobile-search")) {
             search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
         } else {
             search.removeClass("mobile-search");
             menuToggle.removeClass("open-search")
