@@ -103,8 +103,8 @@
                             display: 'block'
                         });
                     },
-                    success: function(datas) {
-                        // console.log(datas);
+                    success: function(data) {
+                        // console.log(data);
                         const $resultPanel = $(".modal-body")[0];
                         let str = `<ul class="modal-results">`;
                         var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
@@ -117,7 +117,7 @@
                             $resultPanel.innerHTML = text;
                             return;
                         }
-                        datas.forEach(function (data) {
+                        data.forEach(function (data) {
                             var isMatch = true;
                             if (!data.title || data.title.trim() === '') {
                                 data.title = "Untitled";
