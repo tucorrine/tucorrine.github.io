@@ -61,7 +61,10 @@
             search.addClass("mobile-search");
         } else {
             search.removeClass("mobile-search");
-        } 
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
     }
 
     function search(searchInputEl, formEl, flag) {
