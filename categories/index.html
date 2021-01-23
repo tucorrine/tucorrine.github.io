@@ -51,174 +51,173 @@
     <script>
     function searchToggle() {
         const width = $(document.body).width()
-        if(width > 479) {
+        if (width > 479) {
             return;
         }
         const search = $('.search');
-        const searchForm = $('.form-search')
+        const searchForm = $('.form-search');
         const menuToggle = $('.menu-toggle');
         const title = $('.navbar-header-title ');
 
-        if(!search.hasClass("mobile-search")) {
+        if (!search.hasClass("mobile-search")) {
             search.addClass("mobile-search");
             menuToggle.addClass("open-search")
-            title.addClass("mobile-title-hidden");
+            title.addClass("mobile-title-hidden")
         } else {
             search.removeClass("mobile-search");
             menuToggle.removeClass("open-search")
             // title.css({visibility: 'visible'})
-            title.removeClass("mobile-title-hidden");
-        } 
-    }
+            title.removeClass("mobile-title-hidden")
+        }
 
-    function search(searchInputEl, formEl, flag) {
-        const path = "/" + "search.json"; // 可以在public 下查看这个search.json
-        $(formEl).submit(function(e){
-            e.preventDefault();
-            let target = null
-            if(searchInputEl == null) {
-                const screenWidth = $(document.body).width();
-                target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
-                console.log(target);
-            } else {
-                target = $(searchInputEl)
-            }
+        function search(searchInputEl, formEl, flag) {
+            const path = "/" + "search.json"; // 可以在public 下查看这个search.json
+            $(formEl).submit(function (e) {
+                e.preventDefault();
+                let target = null
+                if (searchInputEl == null) {
+                    const screenWidth = $(document.body).width();
+                    target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
+                    console.log(target);
+                } else {
+                    target = $(searchInputEl)
+                }
 
-            if(!flag && target.val() === '') {
-                return ;
-            }
+                if (!flag && target.val() === '') {
+                    return;
+                }
 
-            $("#u-search").fadeIn(500, function() {
-                $("body > .wrapper").addClass("modal-active");
+                $("#u-search").fadeIn(500, function () {
+                    $("body > .wrapper").addClass("modal-active");
 
-                $.ajax({
-                    url: path,
-                    dataType: "json",
-                    beforeSend: function (xhr) {
-                        $input = target.val();
-                        $(".form-input").val($input);
-                        const loadingBar = $('.search-loading-bar') 
-                        loadingBar.css({
-                            width:'100%',
-                            display: 'block'
-                        });
-                    },
-                    success: function( datas ) {
-                        console.log(datas);
-                        const $resultPanel = $(".modal-body")[0];
-                        let str = `<ul class="modal-results">`;
-                        var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
-                        $resultPanel.innerHTML = "";
-                        let hasResult = false
-                        let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
+                    $.ajax({
+                        url: path,
+                        dataType: "json",
+                        beforeSend: function (xhr) {
+                            $input = target.val();
+                            $(".form-input").val($input);
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '100%',
+                                display: 'block'
+                            });
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            const $resultPanel = $(".modal-body")[0];
+                            let str = `<ul class="modal-results">`;
+                            var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
+                            $resultPanel.innerHTML = "";
+                            let hasResult = false
+                            let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
 
-                        if ($(".form-input").val().trim().length <= 0) {
-                            // 没有结果
-                            $resultPanel.innerHTML = text;
-                            return;
-                        }
-                        datas.forEach(function (data, index) {
-                            var isMatch = true;
-                            if (!data.title || data.title.trim() === '') {
-                                data.title = "Untitled";
+                            if ($(".form-input").val().trim().length <= 0) {
+                                // 没有结果
+                                $resultPanel.innerHTML = text;
+                                return;
                             }
-                            var data_title = data.title.trim().toLowerCase();
-                            var data_content = data.content && data.content.trim().replace(/<[^>]+>/g, "").toLowerCase() || '';
-                            var data_url = data.url;
-                            var index_title = -1;
-                            var index_content = -1;
-                            var first_occur = -1;
-                            // only match artiles with not empty contents
-                            if (data_content !== '') {
-                                keywords.forEach(function (keyword, i) {
-                                    index_title = data_title.indexOf(keyword);
-                                    index_content = data_content.indexOf(keyword);
-
-                                    if (index_title < 0 && index_content < 0) {
-                                        isMatch = false;
-                                    } else {
-                                        hasResult = true
-                                        if (index_content < 0) {
-                                            index_content = 0;
-                                        }
-                                        if (i == 0) {
-                                            first_occur = index_content;
-                                        }
-                                    }
-                                });
-                            } else {
-                                isMatch = false;
-                            }
-                            // show search results
-                            if (isMatch) {
-                                str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
-                                var content = data.content.trim().replace(/<[^>]+>/g, "");
-                                if (first_occur >= 0) {
-                                    // cut out 200 characters
-                                    var start = first_occur - 40;
-                                    var end = first_occur + 160;
-
-                                    if (start < 0) {
-                                        start = 0;
-                                    }
-
-                                    if (start == 0) {
-                                        end = 200;
-                                    }
-
-                                    if (end > content.length) {
-                                        end = content.length;
-                                    }
-
-                                    var match_content = content.substring(start, end);
-
-                                    // highlight all keywords
-                                    keywords.forEach(function (keyword) {
-                                        var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
-                                    });
-
-                                    str += `<span class="content"> ${match_content} ...</span></a>`;
+                            data.forEach(function (data, index) {
+                                var isMatch = true;
+                                if (!data.title || data.title.trim() === '') {
+                                    data.title = "Untitled";
                                 }
-                                str += "</li>";
-                            }
-                        });
-                        str += "</ul>";
-                        if(hasResult) {
-                            $resultPanel.innerHTML = str;
-                        } else {
-                            $resultPanel.innerHTML = text;
-                        }
+                                var data_title = data.title.trim().toLowerCase();
+                                var data_content = data.content && data.content.trim().replace(/<[^>]+>/g, "").toLowerCase() || '';
+                                var data_url = data.url;
+                                var index_title = -1;
+                                var index_content = -1;
+                                var first_occur = -1;
+                                // only match artiles with not empty contents
+                                if (data_content !== '') {
+                                    keywords.forEach(function (keyword, i) {
+                                        index_title = data_title.indexOf(keyword);
+                                        index_content = data_content.indexOf(keyword);
 
-                    },
-                    complete: function() {
-                        setTimeout(() => {
-                                const loadingBar = $('.search-loading-bar') 
+                                        if (index_title < 0 && index_content < 0) {
+                                            isMatch = false;
+                                        } else {
+                                            hasResult = true
+                                            if (index_content < 0) {
+                                                index_content = 0;
+                                            }
+                                            if (i == 0) {
+                                                first_occur = index_content;
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    isMatch = false;
+                                }
+                                // show search results
+                                if (isMatch) {
+                                    str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
+                                    var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                    if (first_occur >= 0) {
+                                        // cut out 200 characters
+                                        var start = first_occur - 40;
+                                        var end = first_occur + 160;
+
+                                        if (start < 0) {
+                                            start = 0;
+                                        }
+
+                                        if (start == 0) {
+                                            end = 200;
+                                        }
+
+                                        if (end > content.length) {
+                                            end = content.length;
+                                        }
+
+                                        var match_content = content.substring(start, end);
+
+                                        // highlight all keywords
+                                        keywords.forEach(function (keyword) {
+                                            var regS = new RegExp(keyword, "gi");
+                                            match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
+                                        });
+
+                                        str += `<span class="content"> ${match_content} ...</span></a>`;
+                                    }
+                                    str += "</li>";
+                                }
+                            });
+                            str += "</ul>";
+                            if (hasResult) {
+                                $resultPanel.innerHTML = str;
+                            } else {
+                                $resultPanel.innerHTML = text;
+                            }
+
+                        },
+                        complete: function () {
+                            setTimeout(() => {
+                                const loadingBar = $('.search-loading-bar')
                                 loadingBar.css({
-                                    width:'0%',
+                                    width: '0%',
                                     display: 'none'
                                 });
-                        }, 300)
-                    }
-                });
+                            }, 300)
+                        }
+                    });
+                })
+
+            });
+        }
+
+        $(document).ready(function () {
+            $('.modal-close').click(function () {
+                $("#u-search").fadeOut();
+                $("body > .wrapper").removeClass("modal-active")
             })
 
-        });
-    }
-
-    $(document).ready(function() {
-        $('.modal-close').click(function () { 
-            $("#u-search").fadeOut();
-            $("body > .wrapper").removeClass("modal-active")
+            $('.modal-overlay').click(function () {
+                $("#u-search").fadeOut();
+                $("body > .wrapper").removeClass("modal-active")
+            })
+            search(null, ".form-search", false)
+            search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
         })
-
-        $('.modal-overlay').click(function() {
-            $("#u-search").fadeOut();
-            $("body > .wrapper").removeClass("modal-active")
-        })
-        search(null, ".form-search", false)
-        search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
-    })
 </script>
 
 
@@ -228,11 +227,13 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">Corrine&#39;s Blog</a></div>
+            <div class="navbar-header header-logo"><a href="/">
+                    Corrine&#39;s Blog
+                </a></div>
             <div class="menu navbar-right">
                 <!-- 这里表示的是pc端搜索框 -->
                 
-                
+                    
     <div class="search ">
         <div class="search-btn" onClick="searchToggle()">
             <img src="/image/search.png" class="search-btn-img" />
@@ -242,31 +243,41 @@
         </form>
     </div>
 
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/categories">Categories</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-                    <a class="menu-item" href="/about">About</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
+                        
+                            <a class="menu-item" href="/archives">
+                                Posts
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                Categories
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                Tags
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                About
+                            </a>
+                            
+                                <input id="switch_default" type="checkbox" class="switch_default">
+                                <label for="switch_default" class="toggleBtn"></label>
             </div>
         </div>
     </nav>
 
     
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">Corrine&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="navbar-mobile-right">
-                    
-                    
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="/">
+                            Corrine&#39;s Blog
+                        </a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    </div>
+                    <div class="navbar-mobile-right">
+                        
+                            
     <div class="search ">
         <div class="search-btn" onClick="searchToggle()">
             <img src="/image/search.png" class="search-btn-img" />
@@ -276,23 +287,31 @@
         </form>
     </div>
 
-                    <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                                <div class="menu-toggle" onclick="mobileBtn()">&#9776; TODO: Menu</div>
+                    </div>
+
                 </div>
-                
+                <div class="menu" id="mobile-menu">
+                    
+                        <a class="menu-item" href="/archives">
+                            Posts
+                        </a>
+                        
+                        <a class="menu-item" href="/categories">
+                            Categories
+                        </a>
+                        
+                        <a class="menu-item" href="/tags">
+                            Tags
+                        </a>
+                        
+                        <a class="menu-item" href="/about">
+                            About
+                        </a>
+                        
+                </div>
             </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/categories">Categories</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-                    <a class="menu-item" href="/about">About</a>
-                
-            </div>
-        </div>
-    </nav>
+        </nav>
 
 </header>
 <script>
@@ -300,10 +319,10 @@
         var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
         var mobileMenu = document.getElementById("mobile-menu");
 
-        if(toggleMenu.classList.contains("active")){
+        if (toggleMenu.classList.contains("active")) {
             toggleMenu.classList.remove("active")
             mobileMenu.classList.remove("active")
-        }else{
+        } else {
             toggleMenu.classList.add("active")
             mobileMenu.classList.add("active")
         }
@@ -333,7 +352,7 @@
                                 
                                     <article class="archive-item">
                                         <a class="archive-item-link"
-                                           href="/2020/12/14/Coursera/">Coursera 助學金申請</a>
+                                           href="/2020/12/17/Hexo%20Resources/">透過 Hexo 架設個人網站</a>
                                     </article>
                                 
                             
@@ -341,7 +360,29 @@
                                 
                                     <article class="archive-item">
                                         <a class="archive-item-link"
-                                           href="/2020/12/04/Hexo%20Resources/">透過 Hexo 架設個人網站</a>
+                                           href="/2020/12/14/Coursera/">Coursera 助學金申請</a>
+                                    </article>
+                                
+                            
+                            
+                        </div>
+                    </div>
+                
+                    
+                    <div class="card-item">
+                        <div class="categories">
+                            <a href="/categories/%E5%BB%A2%E6%96%87/">
+                                <h3>
+                                    <i class="iconfont icon-category" style="padding-right:3px"></i>
+                                    廢文
+                                </h3>
+                            </a>
+                            
+                                
+                                
+                                    <article class="archive-item">
+                                        <a class="archive-item-link"
+                                           href="/2021/01/20/laptop/">第三次重灌電腦</a>
                                     </article>
                                 
                             
@@ -363,7 +404,7 @@
                                 
                                     <article class="archive-item">
                                         <a class="archive-item-link"
-                                           href="/2020/11/28/The%20Real%20First%20Post/">The Real First Post</a>
+                                           href="/2020/12/06/The%20Real%20First%20Post/">The Real First Post</a>
                                     </article>
                                 
                             
@@ -371,7 +412,7 @@
                                 
                                     <article class="archive-item">
                                         <a class="archive-item-link"
-                                           href="/2020/12/05/speech%2020201205/">【疫起提升競爭力之系列講座 — 疫情後產業趨勢、海外人才經驗分享】</a>
+                                           href="/2020/12/18/speech%2020201205/">【疫起提升競爭力之系列講座 — 疫情後產業趨勢、海外人才經驗分享】</a>
                                     </article>
                                 
                             
@@ -393,7 +434,29 @@
                                 
                                     <article class="archive-item">
                                         <a class="archive-item-link"
-                                           href="/2020/12/15/search%20bar/">search bar (研究中)</a>
+                                           href="/2020/12/18/search%20bar/">search bar (研究中)</a>
+                                    </article>
+                                
+                            
+                            
+                        </div>
+                    </div>
+                
+                    
+                    <div class="card-item">
+                        <div class="categories">
+                            <a href="/categories/Windows/">
+                                <h3>
+                                    <i class="iconfont icon-category" style="padding-right:3px"></i>
+                                    Windows
+                                </h3>
+                            </a>
+                            
+                                
+                                
+                                    <article class="archive-item">
+                                        <a class="archive-item-link"
+                                           href="/2021/01/22/windows%20picture/">Windows 照片篇</a>
                                     </article>
                                 
                             

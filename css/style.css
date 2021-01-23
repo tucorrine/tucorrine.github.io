@@ -1649,6 +1649,10 @@ header label {
 
 
 @media screen and (max-width: 479px) {
+  .mobile-title-hidden {
+    transition: all 0.5s;
+    transform: translateX(-300%);
+  }
 
   .navbar-mobile-right {
     display: flex;
@@ -1665,17 +1669,19 @@ header label {
   }
 
   .mobile-search {
+    transition: width 0.3s;
     position: absolute;
     top: 0px;
     left: 0px;
     right: 50px;
     padding-left: 15px;
-    background: #fff;
+    background: transparent;
     height: 80px;
     display: flex;
     flex-direction: row;
     margin-right: 15px;
-  }
+    box-sizing: border-box;
+    }
 
   .mobile-search .form-search {
     display: block;
@@ -1684,5 +1690,11 @@ header label {
 
   .mobile-search .input {
     width: 100%;
+  }
+
+  .open-search {
+    position: absolute;
+    top: 0;
+    right: 15px;
   }
 }

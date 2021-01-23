@@ -12,7 +12,7 @@
 
 
 
-<title>Tag: Speeches | Corrine&#39;s Blog</title>
+<title>第三次重灌電腦 | Corrine&#39;s Blog</title>
 
 
 
@@ -329,29 +329,161 @@
     }
 </script>
         <div class="main">
-            
-
+            <div class="container">
     
-<div class="container">
-    <div class="post-wrap tags">
-        <h2 class="post-title">-&nbsp;Tag&nbsp;·&nbsp;Speeches-</h2>
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
     </div>
-    <div class="post-wrap archive">
-    
-    
-        
-
-        
-            <h3>2020</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2020/12/18/speech%2020201205/">【疫起提升競爭力之系列講座 — 疫情後產業趨勢、海外人才經驗分享】</a>
-            <span class="archive-item-date">十二月 18, 2020</span>
-        </article>
-    
-    
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
 </div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第三次重灌電腦</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Corrine Tu</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">一月 20, 2021&nbsp;&nbsp;19:48:04</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%BB%A2%E6%96%87/">廢文</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="重灌即重生"><a href="#重灌即重生" class="headerlink" title="重灌即重生"></a>重灌即重生</h2><p>喜歡電腦重灌後重生的感覺，這次是第三次重灌筆電ㄌ。</p>
+<p>主畫面<br><img src="https://i.imgur.com/jVhxZBy.png" alt="主畫面"></p>
+<p>沒被釘選的工具列<br><img src="https://i.imgur.com/lSktGac.png" alt="沒被釘選的工具列"><br>這樣子的缺點是：網頁瀏覽想要返回上一頁時，會按到左邊的應用程式。<br>突然想到國小有按 backspace 返回上一頁的功能，現在 Chrome 雖然沒有將其設為預設，但有提供擴充工具，解決了該問題。</p>
+<p>windows 的釘選磚牆<br><img src="https://i.imgur.com/uZNiHpl.png" alt="windows 的釘選磚牆"><br>(缺了一格…)</p>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>把 windows 搞得像 MB (這張桌布是 iOS 14.2 beta 的桌布)，把 MB 搞得像 windows (等到我有 MBP 13，我一定要把桌布換上那張報醜的藍 windows XDDD)</p>
+<h2 id="差異"><a href="#差異" class="headerlink" title="差異"></a>差異</h2><p>好處是 VSCode 的 PolaCode 突然可以用，壞處是 cmd 中的 hexo &amp; Git 怪怪的。<br>參考<a target="_blank" rel="noopener" href="https://hsiangfeng.github.io/nodejs/20190801/449913843/">此文章</a>後，就狂開控制台瀏覽 Path，麻煩麻煩。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Corrine Tu</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://tucorrine.github.io/2021/01/20/laptop/">http://tucorrine.github.io/2021/01/20/laptop/</a></span>
+                    </p>
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>CUTE IS JUST MY COVER. —— Snowball(a role in The Secret Life of Pets)</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Windows/"># Windows</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/01/22/windows%20picture/">Windows 照片篇</a>
+            
+            
+            <a class="next" rel="next" href="/2020/12/18/search%20bar/">search bar (研究中)</a>
+            
+        </section>
+
+
+    </article>
 </div>
 
         </div>
