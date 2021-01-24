@@ -414,6 +414,7 @@
 <p>沒被釘選的工具列<br><img src="https://i.imgur.com/lSktGac.png" alt="沒被釘選的工具列"><br>這樣子的缺點是：網頁瀏覽想要返回上一頁時，會按到左邊的應用程式。<br>突然想到國小有按 backspace 返回上一頁的功能，現在 Chrome 雖然沒有將其設為預設，但有提供擴充工具，解決了該問題。</p>
 <p>windows 的釘選磚牆<br><img src="https://i.imgur.com/uZNiHpl.png" alt="windows 的釘選磚牆"><br>（缺了一格…）</p>
 <h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>把 windows 搞得像 MB （這張桌布是 iOS 14.2 beta 的桌布），把 MB 搞得像 windows （等到我有 MBP 13，我一定要把桌布換上那張報醜的藍 windows XDDD）</p>
+<hr>
 <h2 id="差異"><a href="#差異" class="headerlink" title="差異"></a>差異</h2><p>好處是 VSCode 的 PolaCode 突然可以用，壞處是 cmd 中的 hexo &amp; Git 怪怪的。<br>參考<a target="_blank" rel="noopener" href="https://hsiangfeng.github.io/nodejs/20190801/449913843/">此文章</a>後，就狂開控制台瀏覽 Path，麻煩麻煩。</p>
 <h2 id="二更（2021-1-23）"><a href="#二更（2021-1-23）" class="headerlink" title="二更（2021/1/23）"></a>二更（2021/1/23）</h2><p>怪怪之處：<font color=#008000>2021/1/24皆解決</font></p>
 <ol>
@@ -427,8 +428,7 @@
 <h3 id="3-md-旁出現了奇怪的黃色-M-或綠色-A"><a href="#3-md-旁出現了奇怪的黃色-M-或綠色-A" class="headerlink" title="3. md 旁出現了奇怪的黃色 M 或綠色 A"></a>3. md 旁出現了奇怪的黃色 M 或綠色 A</h3><p>把 VSCode 中的 git.decorations.enabled 取消選擇即可。</p>
 <p>但是內文還是會有綠綠的更改紀錄存在，<font color=#FF0000>待解決</font>。</p>
 <h3 id="4-日期非創作日期（疑似顯示的是文章更新的最後日期）"><a href="#4-日期非創作日期（疑似顯示的是文章更新的最後日期）" class="headerlink" title="4. 日期非創作日期（疑似顯示的是文章更新的最後日期）"></a>4. 日期非創作日期（疑似顯示的是文章更新的最後日期）</h3><p>真的是莫名其妙被改了。</p>
-<p>打開 blog 的（非主題的） _config.yml ，把 _config.yml 中的 updated_option 從 date 改成 mtime 。</p>
-<h4 id="註"><a href="#註" class="headerlink" title="註"></a>註</h4><p>updated_option 中的 date = 文章創作日期, mtime = 文章最後更新的日期。</p>
+<p>打開 blog 的（非主題的） _config.yml ，把 _config.yml 中的 updated_option 從 date 改成 mtime 。<br>（註： date = 文章創作日期, mtime = 文章最後更新的日期。）</p>
 
         </div>
 
