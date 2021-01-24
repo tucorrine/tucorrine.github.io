@@ -55,12 +55,19 @@
       return;
     }
     const search = $('.search');
-    const searchForm = $('.form-search')
+    const searchForm = $('.form-search');
+    const menuToggle = $('.menu-toggle');
+    const title = $('.navbar-header-title ');
 
     if (!search.hasClass("mobile-search")) {
       search.addClass("mobile-search");
+      menuToggle.addClass("open-search")
+      title.addClass("mobile-title-hidden")
     } else {
       search.removeClass("mobile-search");
+      menuToggle.removeClass("open-search")
+      // title.css({visibility: 'visible'})
+      title.removeClass("mobile-title-hidden")
     }
   }
 
@@ -314,7 +321,7 @@
         <h2 class="post-title">About</h2>
         
         <section class="post-content">
-            <p>Senior 2 (Grade 11)<br>Email: <a href="mailto:&#98;&#x62;&#99;&#46;&#x63;&#x6f;&#114;&#114;&#105;&#x6e;&#101;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#98;&#x62;&#99;&#46;&#x63;&#x6f;&#114;&#114;&#105;&#x6e;&#101;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a></p>
+            <p>Senior 2 (Grade 11)<br>Email: <a href="mailto:&#x62;&#x62;&#99;&#46;&#x63;&#111;&#x72;&#114;&#x69;&#110;&#101;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x62;&#x62;&#99;&#46;&#x63;&#111;&#x72;&#114;&#x69;&#110;&#101;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a></p>
 
         </section>
     </article>

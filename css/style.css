@@ -1644,40 +1644,47 @@ header label {
 
 
 @media screen and (max-width: 479px) {
-
+    /* 此处做了修改 */
+    .mobile-title-hidden {
+        transition: all 0.5s;
+        transform: translateX(-300%);
+    }
     .navbar-mobile-right {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
-
     .search .search-btn {
         cursor: pointer;
     }
-
     .search .form-search {
         display: none;
     }
-
     .mobile-search {
+        transition: width 0.3s;
         position: absolute;
         top: 0px;
         left: 0px;
         right: 50px;
         padding-left: 15px;
-        background: #fff;
+        background: transparent;
         height: 80px;
         display: flex;
         flex-direction: row;
         margin-right: 15px;
+        box-sizing: border-box;
     }
-
     .mobile-search .form-search {
         display: block; 
         flex: 1;
     }
-
     .mobile-search .input {
         width: 100%;
     } 
+    /* 此处做了修改 */
+    .open-search {
+        position: absolute;
+        top: 0;
+        right: 15px;
+    }
 }
