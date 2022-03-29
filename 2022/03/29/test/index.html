@@ -12,7 +12,7 @@
 
 
 
-<title>第三次重灌電腦 | Corrine&#39;s Blog</title>
+<title>test | Corrine&#39;s Blog</title>
 
 
 
@@ -57,7 +57,7 @@
     const search = $('.search');
     const searchForm = $('.form-search');
     const menuToggle = $('.menu-toggle');
-    const title = $('.navbar-header-title ');
+    const title = $('.navbar-header-title');
 
     if (!search.hasClass("mobile-search")) {
       search.addClass("mobile-search");
@@ -221,7 +221,8 @@
   })
 </script>
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Corrine's Blog" type="application/atom+xml">
+</head>
 <body>
     <div class="wrapper">
         <header>
@@ -288,6 +289,8 @@
   </div>
 
                                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                    <div class="navbar-header-title">
+                        <a href="/">Corrine&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                     </div>
 
                 </div>
@@ -318,73 +321,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">第三次重灌電腦</h1>
+            <h1 class="post-title">test</h1>
             
                 <div class="post-meta">
                     
@@ -393,7 +334,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">一月 20, 2021&nbsp;&nbsp;19:48:04</a>
+                        Date: <a href="#">三月 29, 2022&nbsp;&nbsp;19:38:29</a>
                         </span>
                     
                     
@@ -409,27 +350,7 @@
         </header>
 
         <div class="post-content">
-            <h2 id="重灌即重生"><a href="#重灌即重生" class="headerlink" title="重灌即重生"></a>重灌即重生</h2><p>喜歡電腦重灌後重生的感覺，這次是第三次重灌筆電ㄌ。</p>
-<p>主畫面<br><img src="https://i.imgur.com/jVhxZBy.png" alt="主畫面"></p>
-<p>沒被釘選的工具列<br><img src="https://i.imgur.com/lSktGac.png" alt="沒被釘選的工具列"><br>這樣子的缺點是：網頁瀏覽想要返回上一頁時，會按到左邊的應用程式。<br>突然想到國小有按 backspace 返回上一頁的功能，現在 Chrome 雖然沒有將其設為預設，但有提供擴充工具，解決了該問題。</p>
-<p>windows 的釘選磚牆<br><img src="https://i.imgur.com/uZNiHpl.png" alt="windows 的釘選磚牆"><br>（缺了一格…）</p>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>把 windows 搞得像 MB （這張桌布是 iOS 14.2 beta 的桌布），把 MB 搞得像 windows （等到我有 MBP 13，我一定要把桌布換上那張報醜的藍 windows XDDD）</p>
-<hr>
-<h2 id="差異"><a href="#差異" class="headerlink" title="差異"></a>差異</h2><p>好處是 VSCode 的 PolaCode 突然可以用，壞處是 cmd 中的 hexo &amp; Git 怪怪的。<br>參考<a target="_blank" rel="noopener" href="https://hsiangfeng.github.io/nodejs/20190801/449913843/">此文章</a>後，就狂開控制台瀏覽 Path，麻煩麻煩。</p>
-<h2 id="二更（2021-1-23）"><a href="#二更（2021-1-23）" class="headerlink" title="二更（2021/1/23）"></a>二更（2021/1/23）</h2><p>怪怪之處：<font color=#008000>2021/1/24皆解決</font></p>
-<ol>
-<li>SSH key 要重新生成（i don’t know why now）</li>
-<li>搜尋功能失靈</li>
-<li>打開 VSCode 發現 .md 旁出現了奇怪的黃色 M 或綠色 A </li>
-<li>日期非創作日期（疑似顯示的是文章更新的最後日期）：導致2020年文章的日期都怪怪的 （我寫完文章都會習慣事後再維修微修更新）。好笑的是蠻多篇文章中都資訊過多（充滿著發布日期），大致上都把日期改誠正確的了，至於分秒的部分，不記得的都統一改成00:00:00。</li>
-</ol>
-<h2 id="三更（2021-1-24）"><a href="#三更（2021-1-24）" class="headerlink" title="三更（2021/1/24）"></a>三更（2021/1/24）</h2><h3 id="1-SSH-key-要重新生成（i-don’t-know-why-now）"><a href="#1-SSH-key-要重新生成（i-don’t-know-why-now）" class="headerlink" title="1. SSH key 要重新生成（i don’t know why now）"></a>1. SSH key 要重新生成（i don’t know why now）</h3><p>詳情請見待更文</p>
-<h3 id="2-搜尋功能失靈"><a href="#2-搜尋功能失靈" class="headerlink" title="2. 搜尋功能失靈"></a>2. 搜尋功能失靈</h3><p>把主題重整（重下載一個，把舊的 _config.yml 跟新的對照更改，其餘的檔案則採用新下載的）。<br>整理過程中，我有把舊的主題設定檔留下來，蠻建議這麼做的，像我最後發現有些東西要再改，就返回重抓。</p>
-<h3 id="3-md-旁出現了奇怪的黃色-M-或綠色-A"><a href="#3-md-旁出現了奇怪的黃色-M-或綠色-A" class="headerlink" title="3. md 旁出現了奇怪的黃色 M 或綠色 A"></a>3. md 旁出現了奇怪的黃色 M 或綠色 A</h3><p>把 VSCode 中的 git.decorations.enabled 取消選擇即可。</p>
-<p>但是內文還是會有綠綠的更改紀錄存在，<font color=#FF0000>待解決</font>。</p>
-<h3 id="4-日期非創作日期（疑似顯示的是文章更新的最後日期）"><a href="#4-日期非創作日期（疑似顯示的是文章更新的最後日期）" class="headerlink" title="4. 日期非創作日期（疑似顯示的是文章更新的最後日期）"></a>4. 日期非創作日期（疑似顯示的是文章更新的最後日期）</h3><p>真的是莫名其妙被改了。</p>
-<p>打開 blog 的（非主題的） _config.yml ，把 _config.yml 中的 updated_option 從 date 改成 mtime 。<br>（註： date = 文章創作日期, mtime = 文章最後更新的日期。）</p>
-
+            
         </div>
 
         
@@ -443,7 +364,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://tucorrine.github.io/2021/01/20/laptop/">http://tucorrine.github.io/2021/01/20/laptop/</a></span>
+                        <span><a href="http://tucorrine.github.io/2022/03/29/test/">http://tucorrine.github.io/2022/03/29/test/</a></span>
                     </p>
                 
                 
@@ -475,10 +396,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/01/22/windows%20picture/">Windows 照片篇</a>
             
-            
-            <a class="next" rel="next" href="/2020/12/15/search%20bar/">search bar （研究中）</a>
+            <a class="next" rel="next" href="/2022/03/29/windows%20picture/">Windows 照片篇</a>
             
         </section>
 
