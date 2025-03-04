@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Corrine Tu">
+
+
+
+
+
+<title>【疫起提升競爭力之系列講座 — 疫情後產業趨勢、海外人才經驗分享】 | Corrine&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/image/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+    <script src="/js/jquery.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+
+    
+        <script>
+  function searchToggle() {
+    const width = $(document.body).width()
+    if (width > 479) {
+      return;
+    }
+    const search = $('.search');
+    const searchForm = $('.form-search');
+    const menuToggle = $('.menu-toggle');
+    const title = $('.navbar-header-title ');
+
+    if (!search.hasClass("mobile-search")) {
+      search.addClass("mobile-search");
+      menuToggle.addClass("open-search")
+      title.addClass("mobile-title-hidden")
+    } else {
+      search.removeClass("mobile-search");
+      menuToggle.removeClass("open-search")
+      // title.css({ visibility: 'visible' })
+      title.removeClass("mobile-title-hidden")
+    }
+  }
+
+  function search(searchInputEl, formEl, flag) {
+    const path = "/" + "search.json"; // 可以在public 下查看这个search.json
+    $(formEl).submit(function (e) {
+      e.preventDefault();
+      let target = null
+      if (searchInputEl == null) {
+        const screenWidth = $(document.body).width();
+        target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
+        console.log(target);
+      } else {
+        target = $(searchInputEl)
+      }
+
+      if (!flag && target.val() === '') {
+        return;
+      }
+
+      $("#u-search").fadeIn(500, function () {
+        $("body > .wrapper").addClass("modal-active");
+
+        $.ajax({
+          url: path,
+          dataType: "json",
+          beforeSend: function (xhr) {
+            $input = target.val();
+            $(".form-input").val($input);
+            const loadingBar = $('.search-loading-bar')
+            loadingBar.css({
+              width: '100%',
+              display: 'block'
+            });
+          },
+          success: function (datas) {
+            // console.log(datas);
+            const $resultPanel = $(".modal-body")[0];
+            let str = `<ul class="modal-results">`;
+            var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
+            $resultPanel.innerHTML = "";
+            let hasResult = false
+            let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
+
+            if ($(".form-input").val().trim().length <= 0) {
+              // 没有结果
+              $resultPanel.innerHTML = text;
+              return;
+            }
+            datas.forEach(function (data) {
+              var isMatch = true;
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var data_title = data.title.trim().toLowerCase();
+              var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    hasResult = true
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // show search results
+              if (isMatch) {
+                str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
+                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                if (first_occur >= 0) {
+                  // cut out 200 characters
+                  var start = first_occur - 40;
+                  var end = first_occur + 160;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 200;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substring(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
+                  });
+
+                  str += `<span class="content"> ${match_content} ...</span></a>`;
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (hasResult) {
+              $resultPanel.innerHTML = str;
+            } else {
+              $resultPanel.innerHTML = text;
+            }
+
+          },
+          complete: function () {
+            setTimeout(() => {
+              const loadingBar = $('.search-loading-bar')
+              loadingBar.css({
+                width: '0%',
+                display: 'none'
+              });
+            }, 300)
+          }
+        });
+      })
+
+    });
+  }
+
+  $(document).ready(function () {
+    $('.modal-close').click(function () {
+      $("#u-search").fadeOut();
+      $("body > .wrapper").removeClass("modal-active")
+    })
+
+    $('.modal-overlay').click(function () {
+      $("#u-search").fadeOut();
+      $("body > .wrapper").removeClass("modal-active")
+    })
+    search(null, ".form-search", false)
+    search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
+  })
+</script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Corrine's Blog" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">
+                    Corrine&#39;s Blog
+                </a></div>
+            <div class="menu navbar-right">
+                <!-- 这里表示的是pc端搜索框 -->
+                
+                    
+  <div class="search ">
+    <div class="search-btn" onClick="searchToggle()">
+      <img src="/search.png" class="search-btn-img" />
+    </div>
+    <form class="form-search">
+      <input class="input" placeholder="Search" autocomplete="off" id="pc-search-input" />
+    </form>
+  </div>
+
+                        
+                            <a class="menu-item" href="/archives">
+                                Posts
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                Categories
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                Tags
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                About
+                            </a>
+                            
+                                <input id="switch_default" type="checkbox" class="switch_default">
+                                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="/">
+                            Corrine&#39;s Blog
+                        </a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    </div>
+                    <div class="navbar-mobile-right">
+                        
+                            
+  <div class="search ">
+    <div class="search-btn" onClick="searchToggle()">
+      <img src="/search.png" class="search-btn-img" />
+    </div>
+    <form class="form-search">
+      <input class="input" placeholder="Search" autocomplete="off" id="mobile-search-input" />
+    </form>
+  </div>
+
+                                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                    </div>
+
+                </div>
+                <div class="menu" id="mobile-menu">
+                    
+                        <a class="menu-item" href="/archives">
+                            Posts
+                        </a>
+                        
+                        <a class="menu-item" href="/categories">
+                            Categories
+                        </a>
+                        
+                        <a class="menu-item" href="/tags">
+                            Tags
+                        </a>
+                        
+                        <a class="menu-item" href="/about">
+                            About
+                        </a>
+                        
+                </div>
+            </div>
+        </nav>
+
+</header>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【疫起提升競爭力之系列講座 — 疫情後產業趨勢、海外人才經驗分享】</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Corrine Tu</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十二月 5, 2020&nbsp;&nbsp;0:00:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%BF%83%E5%BE%97/">心得</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p><img src="https://i.imgur.com/t6Cf5NI.png" alt="【疫起提升競爭力之系列講座—疫情後產業趨勢、海外人才經驗分享】"></p>
+<p>2020&#x2F;12&#x2F;4 看到直屬 po 這個<a target="_blank" rel="noopener" href="https://www.accupass.com/event/2011251414391529985935">演講</a>的資訊在限時動態，主題跟疫情、科技有關，非常吸引我，加上自己超愛聽演講，於是連繫了主辦單位 AIESEC 的<a target="_blank" rel="noopener" href="https://www.facebook.com/AIESECTW/">臉書</a>，詢問高中生是否也可以參加，聽完答案，很興奮地動起手指報名。打開 instagram 告訴學姊明天自己會前往之事，意外地，學姐告訴我她是主持人! 超酷ㄉ，期待明天。</p>
+<p align="right">2020/12/5</p>
+
+<hr>
+<h2 id="王詩婷講者"><a href="#王詩婷講者" class="headerlink" title="王詩婷講者"></a>王詩婷講者</h2><p><a target="_blank" rel="noopener" href="https://www.slideshare.net/InSyncSolutionsLtd/your-first-step-to-software-industry/9-Let_us_walk_youthrough_the">演講簡報</a></p>
+<p><strong>個人筆記</strong></p>
+<p>about 背景</p>
+<blockquote>
+<ul>
+<li>TW 落後 USA 5~8年</li>
+<li>CES（&#x3D; Consumer Electronics Show 消費電子展）</li>
+</ul>
+</blockquote>
+<p>about 簡報</p>
+<blockquote>
+<ol start="2">
+<li>高度自動化：數據（eg. 7-11 vs 全家、獵人頭公司匹配人</li>
+<li>虛擬實境</li>
+<li>取代舊有方式的技術（eg. wordpress 自動寫網頁，不需要程式技術）</li>
+<li>跟個人的現實生活做結合（eg. 睡眠分析）</li>
+<li>保護數據：如果沒有保護好數據，容易被了解自己的個人偏好，做出自己以為是自己做的決定，實際上不是自己決定的決定。</li>
+<li>分散式雲端系統</li>
+<li>略</li>
+<li>？：美團用無人機、小車車送外送</li>
+<li>blockchain：意即去中心化、無法被篡改的應用（eg. 沒辦法偷改成績）</li>
+<li>AI Security</li>
+</ol>
+</blockquote>
+<p>about 別人的提問</p>
+<blockquote>
+<ul>
+<li>UX Design：需要的人少（大公司才需要）。台灣UI, UX混著用。</li>
+<li>HID（&#x3D; Human Interaction Design）</li>
+<li>❌SEO：搜尋引擎優化，你沒看到的等於不存在。需要的人會越來越少。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="羅荷傑講者"><a href="#羅荷傑講者" class="headerlink" title="羅荷傑講者"></a>羅荷傑講者</h2><p>（以下內容由主辦單位提供）</p>
+<p><strong>高效成長的三個元素</strong></p>
+<ol>
+<li>解難題 結合熱情與使命感</li>
+<li>碰核心 落實影響力</li>
+<li>帶團隊 建立團隊或管理項目</li>
+</ol>
+<p><strong>講師推薦的書單</strong></p>
+<ol>
+<li>與成功有約</li>
+<li>Designing your life</li>
+<li>人生的長尾效應</li>
+<li>原子習慣</li>
+<li>OKR 做最重要的是</li>
+</ol>
+<hr>
+<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>TODO: 待更</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Corrine Tu</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://tucorrine.github.io/2020/12/05/speech%2020201205/">http://tucorrine.github.io/2020/12/05/speech%2020201205/</a></span>
+                    </p>
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Everything will be alright.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Speeches/"># Speeches</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/12/12/Coursera/">Coursera 助學金申請</a>
+            
+            
+            <a class="next" rel="next" href="/2020/12/04/Hexo%20Resources/">透過 Hexo 架設個人網站</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Corrine Tu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
+
+<!-- Chic/layout.ejs -->
+<div id="u-search">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="container">
+                <form id="u-search-modal-form" class="u-search-modal-form">
+                    <button type="submit" class="form-submit-btn">
+                        <img src="/search.png" class="search-btn-img" />
+                    </button>
+                    <input placeholder="搜索文章。。。" class="form-input" id="modal-form-input">
+                </form>
+                <a class="modal-close">x</a>
+            </div>
+            <div class="search-loading">
+                <div class="search-loading-bar"></div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <!-- ul 格式如下 -->
+            <!-- <ul class="modal-results">
+                    <li class="result-item">
+                        <a class="result-item-detail">
+                            <span class="title">页面配置</span>
+                            <span class="content">
+                                content
+                            </span>
+                        </a>
+                    </li>
+                </ul> -->
+        </div>
+    </div>
+    <div class="modal-overlay"></div>
+</div>
