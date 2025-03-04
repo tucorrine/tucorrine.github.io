@@ -79,6 +79,8 @@
     
     
     
+    <category term="研究中" scheme="http://tucorrine.github.io/categories/%E7%A0%94%E7%A9%B6%E4%B8%AD/"/>
+    
     
     <category term="Hexo" scheme="http://tucorrine.github.io/tags/Hexo/"/>
     
@@ -137,7 +139,7 @@
   </entry>
   
   <entry>
-    <title>search bar （研究中）</title>
+    <title>search bar</title>
     <link href="http://tucorrine.github.io/2020/12/15/search%20bar/"/>
     <id>http://tucorrine.github.io/2020/12/15/search%20bar/</id>
     <published>2020-12-14T16:00:00.000Z</published>
@@ -152,6 +154,8 @@
       
     
     
+    
+    <category term="研究中" scheme="http://tucorrine.github.io/categories/%E7%A0%94%E7%A9%B6%E4%B8%AD/"/>
     
     
     <category term="Hexo" scheme="http://tucorrine.github.io/tags/Hexo/"/>
