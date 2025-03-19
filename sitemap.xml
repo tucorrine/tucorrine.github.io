@@ -20,9 +20,9 @@
   </url>
   
   <url>
-    <loc>http://tucorrine.github.io/2025/03/04/11)%20resume%20review/</loc>
+    <loc>http://tucorrine.github.io/2025/03/19/11)%20resume%20review/</loc>
     
-    <lastmod>2025-03-04</lastmod>
+    <lastmod>2025-03-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -130,7 +130,7 @@
   <url>
     <loc>http://tucorrine.github.io/2020/12/04/2)%20Hexo%20Resources/</loc>
     
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,6 +155,13 @@
 
   
   <url>
+    <loc>http://tucorrine.github.io/tags/ndhu/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://tucorrine.github.io/tags/Hexo/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -162,7 +169,14 @@
   </url>
   
   <url>
-    <loc>http://tucorrine.github.io/tags/ndhu/</loc>
+    <loc>http://tucorrine.github.io/tags/GitHub/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tucorrine.github.io/tags/Speeches-SITCON/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
