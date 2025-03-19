@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://tucorrine.github.io/2025/03/19/12)%20github%20student/</loc>
+    <loc>http://tucorrine.github.io/2025/03/20/14)%20SITCON%2020250308/</loc>
     
     <lastmod>2025-03-19</lastmod>
     
@@ -11,7 +11,16 @@
   </url>
   
   <url>
-    <loc>http://tucorrine.github.io/2025/03/19/13)%20SITCON%2020250308/</loc>
+    <loc>http://tucorrine.github.io/2025/03/19/13)%20category%20%E6%8E%92%E5%BA%8F/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tucorrine.github.io/2025/03/19/12)%20github%20student/</loc>
     
     <lastmod>2025-03-19</lastmod>
     
@@ -176,7 +185,7 @@
   </url>
   
   <url>
-    <loc>http://tucorrine.github.io/tags/Speeches/</loc>
+    <loc>http://tucorrine.github.io/tags/Speeches-SITCON/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -184,6 +193,13 @@
   
   <url>
     <loc>http://tucorrine.github.io/tags/Coursera/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tucorrine.github.io/tags/Speeches/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -203,17 +219,17 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>http://tucorrine.github.io/tags/Speeches-SITCON/</loc>
+    <loc>http://tucorrine.github.io/categories/%E6%97%A5%E8%A8%98/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>http://tucorrine.github.io/categories/%E6%97%A5%E8%A8%98/</loc>
+    <loc>http://tucorrine.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -227,7 +243,7 @@
   </url>
   
   <url>
-    <loc>http://tucorrine.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
+    <loc>http://tucorrine.github.io/categories/Hexo/</loc>
     <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

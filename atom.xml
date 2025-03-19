@@ -6,7 +6,7 @@
   <link href="http://tucorrine.github.io/atom.xml" rel="self"/>
   
   <link href="http://tucorrine.github.io/"/>
-  <updated>2025-03-19T04:36:13.038Z</updated>
+  <updated>2025-03-19T16:00:00.000Z</updated>
   <id>http://tucorrine.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SITCON 2025</title>
+    <link href="http://tucorrine.github.io/2025/03/20/14)%20SITCON%2020250308/"/>
+    <id>http://tucorrine.github.io/2025/03/20/14)%20SITCON%2020250308/</id>
+    <published>2025-03-19T16:00:00.000Z</published>
+    <updated>2025-03-19T16:00:00.000Z</updated>
+    
+    
+    
+    
+    <category term="心得" scheme="http://tucorrine.github.io/categories/%E5%BF%83%E5%BE%97/"/>
+    
+    
+    <category term="Speeches, SITCON" scheme="http://tucorrine.github.io/tags/Speeches-SITCON/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>category 排序</title>
+    <link href="http://tucorrine.github.io/2025/03/19/13)%20category%20%E6%8E%92%E5%BA%8F/"/>
+    <id>http://tucorrine.github.io/2025/03/19/13)%20category%20%E6%8E%92%E5%BA%8F/</id>
+    <published>2025-03-19T12:33:03.280Z</published>
+    <updated>2025-03-19T12:33:03.280Z</updated>
+    
+    <content type="html"><![CDATA[<p>我我我太興奮了！終於找到自訂 category 順序的方法了，謝謝 AI。</p><p>把 category.ejs 改成：<br>‘’’<br>&lt;% if (is_category()) { %&gt;<br>    &lt;%- partial(‘_page/category’, { pagination: config.category, index: true }) %&gt;<br>        &lt;% } else { %&gt;<br>            <div class="container"><br>                <div class="post-wrap categories"><br>                    <h2 class="post-title">-&nbsp;Categories&nbsp;-</h2><br>                    <div class="categories-card"><br>                        // 新增下方：按照指定順序排序<br>                        &lt;% var sortedCategories=site.categories.toArray().sort((a, b)=&gt; {<br>                            const order = [‘資源分享’, ‘日記’, ‘Hexo’, ‘心得’, ‘研究中’];<br>                            const indexA = order.indexOf(a.name);<br>                            const indexB = order.indexOf(b.name);<br>                            return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);<br>                            });<br>                            %&gt;<br>                            // 新增上方<br>                            &lt;% sortedCategories.forEach(category_item=&gt; { %&gt;<br>                                <div class="card-item"><br>                                    <div class="categories"><br>                                        <a href="<%- url_for(category_item.path) %>"><br>                                            <h3><br>                                                <i class="iconfont icon-category" style="padding-right:3px"></i><br>                                                &lt;%- category_item.name %&gt;<br>                                            </h3><br>                                        </a><br>                                        // 變更下方：對分類下的文章進行排序<br>                                        &lt;% var sortedPosts=category_item.posts.sort(‘date’, -1); // 按日期降序排列<br>                                            sortedPosts.forEach((post_item, index=0)=&gt; {<br>                                            %&gt;<br>                                            // 變更上方<br>                                            &lt;% if (++index &lt;=5) { %&gt;<br>                                                <article class="archive-item"><br>                                                    <a class="archive-item-link" href="<%- url_for(post_item.path) %>"><br>                                                        &lt;%- post_item.title%&gt;<br>                                                    </a><br>                                                </article><br>                                                &lt;% } %&gt;<br>                                                    &lt;% }) %&gt;<br>                                                        &lt;% if (category_item.posts.length&gt; 5) { %&gt;<br>                                                            <a class="more-post-link"                                                                href="<%- url_for(category_item.path) %>">More<br>                                                                &gt;&gt;</a><br>                                                            &lt;% } %&gt;<br>                                    </div><br>                                </div><br>                                &lt;% }) %&gt;<br>                    </div><br>                </div><br>            </div><br>            &lt;% } %&gt;<br>‘’’</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我我我太興奮了！終於找到自訂 category 順序的方法了，謝謝 AI。&lt;/p&gt;
+&lt;p&gt;把 category.ejs 改成：&lt;br&gt;‘’’&lt;br&gt;&amp;lt;% if (is_category()) { %&amp;gt;&lt;br&gt;    &amp;lt;%- partial(‘_page/c</summary>
+      
+    
+    
+    
+    <category term="Hexo" scheme="http://tucorrine.github.io/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="http://tucorrine.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>GitHub Student Developer Pack</title>
@@ -60,7 +102,7 @@
     
     
     
-    <category term="資源分享" scheme="http://tucorrine.github.io/categories/%E8%B3%87%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    <category term="心得" scheme="http://tucorrine.github.io/categories/%E5%BF%83%E5%BE%97/"/>
     
     
     <category term="ndhu" scheme="http://tucorrine.github.io/tags/ndhu/"/>
@@ -280,7 +322,7 @@
     
     
     
-    <category term="資源分享" scheme="http://tucorrine.github.io/categories/%E8%B3%87%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    <category term="Hexo" scheme="http://tucorrine.github.io/categories/Hexo/"/>
     
     
     <category term="Hexo" scheme="http://tucorrine.github.io/tags/Hexo/"/>
