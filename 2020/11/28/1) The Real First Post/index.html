@@ -12,7 +12,7 @@
 
 
 
-<title>Till we meet again | Corrine&#39;s Blog</title>
+<title>The Real First Post | Corrine&#39;s Blog</title>
 
 
 
@@ -319,11 +319,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Till we meet again</h1>
+            <h1 class="post-title">The Real First Post</h1>
             
                 <div class="post-meta">
                     
@@ -332,7 +394,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">三月 4, 2025&nbsp;&nbsp;16:02:39</a>
+                        Date: <a href="#">十一月 28, 2020&nbsp;&nbsp;4:45:00</a>
                         </span>
                     
                     
@@ -348,15 +410,15 @@
         </header>
 
         <div class="post-content">
-            <p>好久沒回來這個網站了，根本不敢看之前寫的文章（但那時候寫得很認真，字句來回修改數次，印象超級深刻）</p>
-<p>重新回來，紀錄我最近的Coding Life：</p>
-<ol>
-<li>現在在東華資工</li>
-<li>對於未來要研究什麼專題還很迷惘，這禮拜六(2025/3/8)會去參加sitcon</li>
-<li>加拿大實習一個月的徵選，在第一階段就被刷掉(Received the message this morning, so it’s kind of TMI)</li>
+            <p>現在是2020/11/28 上午04:45，我終於會用一點點的 Hexo 了！</p>
+<h2 id="真正的第一則貼文？"><a href="#真正的第一則貼文？" class="headerlink" title="真正的第一則貼文？"></a>真正的第一則貼文？</h2><p>前面那篇 Hello World 是系統預設的，至於未刪除的原因是我還不太會用 Hexo 的語法。<br>如果你哪一天突然看到那篇文不見了，可以寫信恭喜我一下ㄛXDDD</p>
+<p>話說我還是不知道主頁那句斜體名言為什麼一個星號要打在”裡面，另一個要在外面。</p>
+<h2 id="今日感想"><a href="#今日感想" class="headerlink" title="今日感想"></a>今日感想</h2><ol>
+<li>看到自己的孩子生出來了 hen 感動，原本還以為自己永遠做不出來TT</li>
+<li>已經把打 “cd myblog” 跟 “hexo s” 的速度提升好幾百倍ㄌ，真是謝囉:)</li>
+<li>希望待會能夠很有效率的補完眠，一堆學校作業跟補習班的補課 wait for me…</li>
 </ol>
-<p>接下來會有兩篇文章：履歷review、sitcon心得</p>
-
+<h2 id="致敬學長成功"><a href="#致敬學長成功" class="headerlink" title="致敬學長成功"></a>致敬學長成功</h2>
         </div>
 
         
@@ -370,7 +432,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://tucorrine.github.io/2025/03/04/Till%20we%20meet%20again/">http://tucorrine.github.io/2025/03/04/Till%20we%20meet%20again/</a></span>
+                        <span><a href="http://tucorrine.github.io/2020/11/28/1)%20The%20Real%20First%20Post/">http://tucorrine.github.io/2020/11/28/1)%20The%20Real%20First%20Post/</a></span>
                     </p>
                 
                 
@@ -389,7 +451,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/ndhu/"># ndhu</a>
+                        <a href="/tags/Hexo/"># Hexo</a>
                     
                         
                 </span>
@@ -402,8 +464,8 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2020/12/04/2)%20Hexo%20Resources/">透過 Hexo 架設個人網站</a>
             
-            <a class="next" rel="next" href="/2023/08/27/windows%20picture/">Windows 照片篇</a>
             
         </section>
 
